@@ -9,16 +9,19 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body>
-    <form class="search-form" id="search-form">
-        <input type="text" name="query" autocomplete="off" placeholder="Search images..." />
+    <body>
+        <div class="container">
+            <form class="search-form" id="search-form">
+                <input class="search-input" type="text" name="query" autocomplete="off" placeholder="Search images..." />
+            
+                <button class="search-button btn" id="search-button" type="submit">Search</button>
+            </form>
+            
+            <ul class="gallery"></ul>
+            
+            <button class="load-more-button btn" id="load-more-button" type="button">Load more</button>
+        </div>
         
-        <button class="search-button" id="search-button" type="submit">Search</button>
-    </form>
-
-    <ul class="gallery"></ul>
-
-    <button class="hidden-button load-more-button" id="load-more-button" type="button">Load more</button>
-    <script src="./js/index.js"></script>
-</body>
+        <script src="./js/index.js"></script>
+    </body>
 </html>

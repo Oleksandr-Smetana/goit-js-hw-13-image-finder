@@ -3,14 +3,14 @@ import PhotosApiService from './apiService';
 
 const refs = {
   searchFormElt: document.querySelector('#search-form'),
-  searchMoreButtonElt: document.querySelector('#load-more-button'),
+  loadMoreButtonElt: document.querySelector('.load-more-button'),
   galleryElt: document.querySelector('.gallery'),
 };
 
 const photosApiService = new PhotosApiService();
 
 refs.searchFormElt.addEventListener('submit', onSearch);
-refs.searchMoreButtonElt.addEventListener('click', onLoadMore);
+refs.loadMoreButtonElt.addEventListener('click', fetchCards);
 
 function onSearch(e) {
   e.preventDefault();
@@ -18,13 +18,34 @@ function onSearch(e) {
   photosApiService.query = e.currentTarget.elements.query.value;
   photosApiService.page = 1;
   //   photosApiService.resetPage();
-  photosApiService.fetchPhotos().then(createPhotoCardMarkup);
+
+  removePhotoCardMarkup();
+  fetchCards();
 }
 
-function onLoadMore(e) {
-  photosApiService.fetchPhotos().then(createPhotoCardMarkup);
+// function onLoadMore(e) {}
+
+function fetchCards() {
+  refs.loadMoreButtonElt.disabled = true;
+  refs.loadMoreButtonElt.textContent = 'Loading...';
+
+  photosApiService.fetchPhotos().then(card => {
+    createPhotoCardMarkup(card);
+    refs.loadMoreButtonElt.disabled = false;
+    refs.loadMoreButtonElt.textContent = 'Load more';
+  });
 }
 
 function createPhotoCardMarkup(hits) {
   refs.galleryElt.insertAdjacentHTML('beforeend', photoCardTpl(hits));
 }
+
+function removePhotoCardMarkup() {
+  refs.galleryElt.innerHTML = '';
+}
+
+// const element = document.getElementById('#load-more-button');
+// element.scrollIntoView({
+//   behavior: 'smooth',
+//   block: 'end',
+// });
