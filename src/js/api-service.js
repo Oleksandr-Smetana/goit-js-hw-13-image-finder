@@ -12,11 +12,11 @@ export default class PhotosApiService {
 
     return fetch(`${BASE_URL}&q=${this.searchQuery}&page=${this.page}&per_page=10&key=${API_KEY}`)
       .then(response => response.json())
-      .then(({ hits }) => {
+      .then(data => {
         // console.log(data.hits);
         this.page += 1;
 
-        return hits;
+        return data;
       });
   }
 

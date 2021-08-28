@@ -13,6 +13,10 @@ ul {
   padding: inherit;
 }
 
+.main-title {
+  margin: 30px auto;
+}
+
 .container {
   width: 100%;
   display: flex;
@@ -26,7 +30,7 @@ ul {
   display: flex;
   justify-content: center;
   /* height: 40px; */
-  margin-top: 30px;
+  /* margin-top: 30px; */
   margin-bottom: 30px;
 }
 
